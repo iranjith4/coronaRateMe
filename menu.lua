@@ -23,6 +23,7 @@ local scene = composer.newScene()
 local function handleButtonEvent(event)
   if ( "ended" == event.phase ) then
       -- Calling the Show Rating
+      composer.gotoScene("coronaRateMe.rateMe")
   end
 end
 
@@ -32,7 +33,7 @@ function scene:create( event )
     local sceneGroup = self.view
 
     local background = display.newRect(display.contentCenterX,display.contentCenterY,display.contentWidth,display.contentHeight + 200)
-    background:setFillColor(0,0,0)
+    background:setFillColor(1,1,1)
     sceneGroup:insert(background)
 
 
@@ -41,10 +42,12 @@ function scene:create( event )
         left = display.contentCenterX / 2,
         top = display.contentCenterY,
         id = "showRate",
-        label = "Default",
+        label = "Call Alert",
         fillColor = { default={1,0,0,1}, over={1,0.1,0.7,0.4} },
         onEvent = handleButtonEvent
     })
+
+    sceneGroup:insert(showRate)
 
     -- Initialize the scene here.
     -- Example: add display objects to "sceneGroup", add touch listeners, etc.
