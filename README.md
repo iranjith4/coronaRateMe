@@ -86,7 +86,7 @@ Status Values :
 
   * `NONE` - When user have not interacted with the Popup
   * `NEVER` - User has selected "No Thanks"
-  * `LATER` - User have chosen "Never Ask Again"
+  * `LATER` - User have chosen "Remind Me Later"
   * `RATED` - User have tapped "Rate Now"
 
 Based on the status values, you can call the Popup
@@ -107,7 +107,7 @@ if status == "LATER" then
 end
 ```
 
-NOTE : Please make sure `text` should be one line. 
+NOTE : Please make sure `text` should be one line.
 
 Thats it for Custom call Event.
 
