@@ -11,7 +11,7 @@ Made for Womi Studios, by Perk.com Inc.
 
 ##How to Integrate
 1. Download the repo, copy the `coronaRateMe` folder and paste at the root folder of your game where the `main.lua` is there.
-2. In the `coronaRateMe/rateMeUtilities.lua`, add `appIconUrl`,`appStoreId`,`androidPackageName`. 
+2. In the `coronaRateMe/rateMeUtilities.lua`, add `appIconUrl`,`appStoreId`,`androidPackageName`.
 
 ```lua
 local appIconUrl = "Icon-60.png"
@@ -63,7 +63,7 @@ Best place to add the above code will be after the Game complete, or high score 
 Thats it !!
 
 ### 2. Custom Call Event
-You can call custom call even when you want to show the popup anywhere. 
+You can call custom call even when you want to show the popup anywhere.
 
 In the `main.lua` add the following code
 
@@ -80,7 +80,7 @@ local rateMeUtilities = require "coronaRateMe.rateMeUtilities"
 
 local status = rateMeUtilities.getStatus()
 ```
-Status Values : 
+Status Values :
 
   * `NONE` - When user have not interacted with the Popup
   * `NEVER` - User has selected "No Thanks"
@@ -108,19 +108,18 @@ end
 Thats it for Custom call Event.
 
 ## Advanced Methods
-* In Automatic Rating Popup, If you want to change the app launch count, where the initial popup need to be shown and `Remind Me Later` frequency, you can modify at `coronaRateMe/rateMeUtilities.lua` as 
+* In Automatic Rating Popup, If you want to change the app launch count, where the initial popup need to be shown and `Remind Me Later` frequency, you can modify at `coronaRateMe/rateMeUtilities.lua` as
 
   ```lua
   local firstAlertAfter = 4
   local laterAlertAfter = 4
   ```
 
-* For the Custom Call Event, you can get the App Launch count by using 
+* For the Custom Call Event, you can get the App Launch count by using
   ```lua
   local launchCount = rateMeUtilities.getAppLaunchCount()
   ```
-  
-## Thanks
-Thanks for using Corona Rate Me. Feel free to Fork, send Pull Request. 
 
-  
+## Thanks
+Thanks for using Corona Rate Me. Feel free to Fork, send Pull Request.
+In case of any bugs, Please create issue [here.](https://github.com/iranjith4/coronaRateMe/issues) 
