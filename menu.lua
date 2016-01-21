@@ -9,6 +9,7 @@
 local composer = require( "composer" )
 local widget = require ("widget")
 local display = require ("display")
+local rateMeUtilities = require "coronaRateMe.rateMeUtilities"
 
 local scene = composer.newScene()
 
@@ -58,6 +59,19 @@ function scene:create( event )
     })
 
     sceneGroup:insert(showRate)
+    print(rateMeUtilities.getStatus())
+    if rateMeUtilities.checkForAlert() then
+      local options =
+      {
+        isModal = true,
+        effect = "fade",
+        time = 200,
+        params = {
+          text = "Hello World !",
+        }
+      }
+      composer.showOverlay("coronaRateMe.rateMe",options)
+    end
 
     -- Initialize the scene here.
     -- Example: add display objects to "sceneGroup", add touch listeners, etc.
