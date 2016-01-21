@@ -19,7 +19,7 @@ local appStoreId = "id1025709661"
 local androidPackageName = "com.womistudios.dashingdots.aphone"
 ```
 
-Note : Currently working on the image to have rounded square by default. Untill you can use the rounded rectangle image itself.
+Note : Currently working on the image to have rounded square by default. Until you can use the rounded rectangle image itself.
 
 ##How to Use
 
@@ -57,6 +57,8 @@ if rateMeUtilities.checkForAlert() then
   composer.showOverlay("coronaRateMe.rateMe",options)
 end
 ```
+
+NOTE : Please make sure `text` should be one line.
 
 Best place to add the above code will be after the Game complete, or high score achieve.
 
@@ -105,6 +107,8 @@ if status == "LATER" then
 end
 ```
 
+NOTE : Please make sure `text` should be one line. 
+
 Thats it for Custom call Event.
 
 ## Advanced Methods
@@ -122,4 +126,4 @@ Thats it for Custom call Event.
 
 ## Thanks
 Thanks for using Corona Rate Me. Feel free to Fork, send Pull Request.
-In case of any bugs, Please create issue [here.](https://github.com/iranjith4/coronaRateMe/issues) 
+In case of any bugs, Please create issue [here.](https://github.com/iranjith4/coronaRateMe/issues)
