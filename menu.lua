@@ -30,7 +30,7 @@ local function handleButtonEvent(event)
         effect = "fade",
         time = 200,
         params = {
-          text = "Like the App dsvasndkjfn\n ks fkjan dkfjlasdlk flkasdn ?",
+          text = "Like the App dsvasndkjfn ks fkjan dkfjlasdlk flkasdn ?",
         }
       }
 
@@ -59,7 +59,7 @@ function scene:create( event )
     })
 
     sceneGroup:insert(showRate)
-    print(rateMeUtilities.getStatus())
+    print(rateMeUtilities.getAppLaunchCount())
     if rateMeUtilities.checkForAlert() then
       local options =
       {

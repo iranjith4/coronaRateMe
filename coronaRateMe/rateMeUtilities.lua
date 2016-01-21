@@ -82,6 +82,12 @@ function checkForRateMeData()
 	end
 end
 
+function M.getAppLaunchCount()
+  checkForRateMeData()
+  local data = loadTable("rateMeFile.json")
+  return data.appLaunchCount
+end
+
 function M.getStatus()
   checkForRateMeData()
   local data = loadTable("rateMeFile.json")
