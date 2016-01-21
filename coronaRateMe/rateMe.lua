@@ -6,28 +6,53 @@
 -----------------------------------------------------------------------
 -----------------------------------------------------------------------
 -----------------------------------------------------------------------
------------------------------------------------------------------------
------------------------------------------------------------------------
------------------------------------------------------------------------
--- Developers can alter only this values
-local firstAlertAfter = 4
-local laterAlertAfter = 4
-local appIconUrl = "Icon-60.png"
-local appStoreId = ""
-local playStoreId = ""
------------------------------------------------------------------------
------------------------------------------------------------------------
------------------------------------------------------------------------
------------------------------------------------------------------------
------------------------------------------------------------------------
------------------------------------------------------------------------
 local composer = require( "composer" )
 local rateMeUtilities = require ("coronaRateMe.rateMeUtilities")
+
+local firstAlertAfter = rateMeUtilities.firstAlertAfter()
+local laterAlertAfter = rateMeUtilities.laterAlertAfter()
+local appIconUrl = rateMeUtilities.appIconUrl()
+local appStoreId = rateMeUtilities.appStoreId()
+local androidPackageName = rateMeUtilities.androidPackageName()
 local alertWidth = display.contentWidth * 0.80
 local buttonWidth = alertWidth * 0.80
 local starWidth = buttonWidth / 10
 
 local scene = composer.newScene()
+
+local function rateNowDone()
+  rateMeUtilities.rated()
+  composer.hideOverlay( "fade", 200 )
+end
+
+
+-- Button Call backs
+local function rateNowListener(event)
+  if event.phase == "ended" then
+    if rateMeUtilities.osType() == "ios" then
+      local url = "itms-apps://itunes.apple.com/app/"..appStoreId
+      system.openURL(url)
+    elseif rateMeUtilities.osType() == "android" then
+      local url = "market://details?id="..androidPackageName
+      system.openURL(url)
+    end
+    rateNowDone()
+  end
+end
+
+local function remindMeLaterListener(event)
+  if event.phase == "ended" then
+    composer.hideOverlay( "fade", 200 )
+    rateMeUtilities.remindMeLater()
+  end
+end
+
+local function noThanksListener(event)
+  if event.phase == "ended" then
+    composer.hideOverlay( "fade", 200 )
+    rateMeUtilities.neverAskAgain()
+  end
+end
 
 -- "scene:create()"
 function scene:create( event )
@@ -35,7 +60,7 @@ function scene:create( event )
     local sceneGroup = self.view
 
     local background = display.newRect(display.contentCenterX,display.contentCenterY,display.contentWidth,display.contentHeight + 200)
-    background:setFillColor(0.5,0.5,0.5,0.5)
+    background:setFillColor(0,0,0,0.8)
     sceneGroup:insert(background)
 
     local topBg = display.newImage("coronaRateMe/gray_top.png")
@@ -52,7 +77,6 @@ function scene:create( event )
     appIcon.y = topBg.y + topBg.height / 2 - appIconD / 2 - 20
     appIcon.cornerRadius = 50
     sceneGroup:insert(appIcon)
-
 
     local middleBg = display.newImage("coronaRateMe/blue_centre.png")
     middleBg.height = rateMeUtilities.getNewHeight(middleBg,alertWidth)
@@ -85,12 +109,12 @@ function scene:create( event )
       sceneGroup:insert(star)
     end
 
-
     local rateNowButton = display.newImage("coronaRateMe/button_rate_now.png")
     rateNowButton.height = rateMeUtilities.getNewHeight(rateNowButton,buttonWidth)
     rateNowButton.width = buttonWidth
     rateNowButton.x = display.contentCenterX
     rateNowButton.y = starY + starWidth * 2
+    rateNowButton:addEventListener("touch",rateNowListener)
     sceneGroup:insert(rateNowButton)
 
     local remindMeButton = display.newImage("coronaRateMe/button_remind.png")
@@ -98,6 +122,7 @@ function scene:create( event )
     remindMeButton.width = buttonWidth
     remindMeButton.x = display.contentCenterX
     remindMeButton.y = rateNowButton.y + rateNowButton.height
+    remindMeButton:addEventListener("touch",remindMeLaterListener)
     sceneGroup:insert(remindMeButton)
 
     local noThanksButton = display.newImage("coronaRateMe/button_no_thanks.png")
@@ -105,8 +130,8 @@ function scene:create( event )
     noThanksButton.width = buttonWidth
     noThanksButton.x = display.contentCenterX
     noThanksButton.y = remindMeButton.y + remindMeButton.height
-    sceneGroup:insert(remindMeButton)
-
+    noThanksButton:addEventListener("touch",noThanksListener)
+    sceneGroup:insert(noThanksButton)
 end
 
 

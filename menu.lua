@@ -23,7 +23,17 @@ local scene = composer.newScene()
 local function handleButtonEvent(event)
   if ( "ended" == event.phase ) then
       -- Calling the Show Rating
-      composer.gotoScene("coronaRateMe.rateMe")
+      local options =
+      {
+        isModal = true,
+        effect = "fade",
+        time = 200,
+        params = {
+          text = "Hello World !",
+        }
+      }
+
+      composer.showOverlay("coronaRateMe.rateMe",options)
   end
 end
 
@@ -33,7 +43,7 @@ function scene:create( event )
     local sceneGroup = self.view
 
     local background = display.newRect(display.contentCenterX,display.contentCenterY,display.contentWidth,display.contentHeight + 200)
-    background:setFillColor(1,1,1)
+    background:setFillColor(1,0,1)
     sceneGroup:insert(background)
 
 
