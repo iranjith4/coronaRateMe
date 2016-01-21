@@ -59,6 +59,8 @@ function scene:create( event )
 
     local sceneGroup = self.view
 
+    local params = event.params
+
     local background = display.newRect(display.contentCenterX,display.contentCenterY,display.contentWidth,display.contentHeight + 200)
     background:setFillColor(0,0,0,0.8)
     sceneGroup:insert(background)
@@ -85,7 +87,19 @@ function scene:create( event )
     middleBg.y = topBg.y + topBg.height / 2 + middleBg.height / 2
     sceneGroup:insert(middleBg)
 
-    local text = display.newText( "Hello World!", middleBg.x, middleBg.y, native.systemFont, 15 )
+    local textOptions =
+    {
+    --parent = textGroup,
+      text = params.text,
+      x = middleBg.x,
+      y =  middleBg.y,
+      width = alertWidth,     --required for multi-line and alignment
+      font = native.systemFont,
+      fontSize = 14,
+      align = "center"
+    }
+
+    local text = display.newText( textOptions )
     text:setFillColor( 1, 1, 1 )
     sceneGroup:insert(text)
 

@@ -30,7 +30,7 @@ local function handleButtonEvent(event)
         effect = "fade",
         time = 200,
         params = {
-          text = "Hello World !",
+          text = "Like the App dsvasndkjfn\n ks fkjan dkfjlasdlk flkasdn ?",
         }
       }
 
