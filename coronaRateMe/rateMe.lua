@@ -38,13 +38,21 @@ function scene:create( event )
     background:setFillColor(0.5,0.5,0.5,0.5)
     sceneGroup:insert(background)
 
-
     local topBg = display.newImage("coronaRateMe/gray_top.png")
     topBg.height = rateMeUtilities.getNewHeight(topBg,alertWidth)
     topBg.width = alertWidth
     topBg.x = display.contentCenterX
     topBg.y = display.contentHeight * 0.30
     sceneGroup:insert(topBg)
+
+    --Adding the App Icon
+    local appIconD = alertWidth * 0.25
+    local appIcon = display.newImageRect(appIconUrl,appIconD, appIconD)
+    appIcon.x = display.contentCenterX
+    appIcon.y = topBg.y + topBg.height / 2 - appIconD / 2 - 20
+    appIcon.cornerRadius = 50
+    sceneGroup:insert(appIcon)
+
 
     local middleBg = display.newImage("coronaRateMe/blue_centre.png")
     middleBg.height = rateMeUtilities.getNewHeight(middleBg,alertWidth)
