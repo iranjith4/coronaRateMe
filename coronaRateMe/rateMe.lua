@@ -1,8 +1,8 @@
 -- Created by Ranjithkumar Matheswaran on 20 Jan 2016
 -- For Womi Studios by Perk.com
---
-local composer = require( "composer" )
-local rateMeUtilities = require ("coronaRateMe.rateMeUtilities")
+-- ╦ ╦╔═╗╔╦╗╦  ╔═╗╔╦╗╦ ╦╔╦╗╦╔═╗╔═╗
+-- ║║║║ ║║║║║  ╚═╗ ║ ║ ║ ║║║║ ║╚═╗
+-- ╚╩╝╚═╝╩ ╩╩  ╚═╝ ╩ ╚═╝═╩╝╩╚═╝╚═╝
 -----------------------------------------------------------------------
 -----------------------------------------------------------------------
 -----------------------------------------------------------------------
@@ -21,8 +21,11 @@ local playStoreId = ""
 -----------------------------------------------------------------------
 -----------------------------------------------------------------------
 -----------------------------------------------------------------------
+local composer = require( "composer" )
+local rateMeUtilities = require ("coronaRateMe.rateMeUtilities")
 local alertWidth = display.contentWidth * 0.80
 local buttonWidth = alertWidth * 0.80
+local starWidth = buttonWidth / 10
 
 local scene = composer.newScene()
 
@@ -40,7 +43,7 @@ function scene:create( event )
     topBg.height = rateMeUtilities.getNewHeight(topBg,alertWidth)
     topBg.width = alertWidth
     topBg.x = display.contentCenterX
-    topBg.y = display.contentHeight * 0.20
+    topBg.y = display.contentHeight * 0.30
     sceneGroup:insert(topBg)
 
     local middleBg = display.newImage("coronaRateMe/blue_centre.png")
@@ -62,14 +65,15 @@ function scene:create( event )
     sceneGroup:insert(bottomBg)
 
     --Adding Star
-    local starX = display.contentCenterX - 3 * buttonWidth / 10
+    local starX = display.contentCenterX - 4 * starWidth
+    local starY = bottomBg.y - bottomBg.height / 2 + starWidth
     for i = 0,4,1 do
       local star = display.newImage("coronaRateMe/star.png")
-      star.height = rateMeUtilities.getNewHeight(star,buttonWidth / 10)
-      star.width = buttonWidth / 10
+      star.height = rateMeUtilities.getNewHeight(star,starWidth)
+      star.width = starWidth
       star.x = starX
-      star.y = bottomBg.y - bottomBg.height / 2 + 10
-      starX = starX + 2 * buttonWidth / 10
+      star.y = starY
+      starX = starX + 2 * starWidth
       sceneGroup:insert(star)
     end
 
@@ -78,13 +82,23 @@ function scene:create( event )
     rateNowButton.height = rateMeUtilities.getNewHeight(rateNowButton,buttonWidth)
     rateNowButton.width = buttonWidth
     rateNowButton.x = display.contentCenterX
-    rateNowButton.y = bottomBg.y - rateNowButton.height
+    rateNowButton.y = starY + starWidth * 2
     sceneGroup:insert(rateNowButton)
 
+    local remindMeButton = display.newImage("coronaRateMe/button_remind.png")
+    remindMeButton.height = rateMeUtilities.getNewHeight(remindMeButton, buttonWidth)
+    remindMeButton.width = buttonWidth
+    remindMeButton.x = display.contentCenterX
+    remindMeButton.y = rateNowButton.y + rateNowButton.height
+    sceneGroup:insert(remindMeButton)
 
+    local noThanksButton = display.newImage("coronaRateMe/button_no_thanks.png")
+    noThanksButton.height = rateMeUtilities.getNewHeight(noThanksButton, buttonWidth)
+    noThanksButton.width = buttonWidth
+    noThanksButton.x = display.contentCenterX
+    noThanksButton.y = remindMeButton.y + remindMeButton.height
+    sceneGroup:insert(remindMeButton)
 
-    -- Initialize the scene here.
-    -- Example: add display objects to "sceneGroup", add touch listeners, etc.
 end
 
 
