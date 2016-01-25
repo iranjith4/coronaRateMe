@@ -94,6 +94,13 @@ function M.getStatus()
   return data.status
 end
 
+function changeNextAlertIn(value)
+  checkForRateMeData()
+  local data = loadTable("rateMeFile.json")
+  data.nextAlertIn = value
+  saveTable(data,"rateMeFile.json")
+end
+
 function M.checkForAlert()
   checkForRateMeData()
   local data = loadTable("rateMeFile.json")
@@ -101,6 +108,9 @@ function M.checkForAlert()
     if data.nextAlertIn == data.appLaunchCount then
       return true
     else
+      if data.nextAlertIn < data.appLaunchCount then
+        changeNextAlertIn(data.appLaunchCount + 4)
+      end
       return false
     end
   else
