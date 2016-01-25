@@ -1,4 +1,7 @@
 # Corona Rate Me !
+
+Current Version : 1.0.1
+
 Asking rating to the app users made easy for games made with Corona SDK.
 
 ![alt tag](https://github.com/iranjith4/coronaRateMe/blob/dev_r/screenshot.png)
@@ -123,6 +126,11 @@ Thats it for Custom call Event.
   ```lua
   local launchCount = rateMeUtilities.getAppLaunchCount()
   ```
+
+## ChangeLogs
+* 1.0.1
+  * Added a Fix for Showing Alert - When the user have not responded to the alert ever. (Previously when the user have not responded anything to the alert by closing the app, the alert was again never shown. Now thats fixed and showing the alert in next 4th launch)
+
 
 ## Thanks
 Thanks for using Corona Rate Me. Feel free to Fork, send Pull Request.
