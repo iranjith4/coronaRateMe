@@ -61,7 +61,7 @@ if rateMeUtilities.checkForAlert() then
 end
 ```
 
-NOTE : Please make sure `text` should be one line.
+NOTE : Please make sure `text` should be one / two line. If you want explicitly to cut use `\n`.
 
 Best place to add the above code will be after the Game complete, or high score achieve.
 
@@ -128,6 +128,11 @@ Thats it for Custom call Event.
   ```
 
 ## ChangeLogs
+* 1.0.2
+  * 2 Line support for the
+
+
+
 * 1.0.1
   * Added a Fix for Showing Alert - When the user have not responded to the alert ever. (Previously when the user have not responded anything to the alert by closing the app, the alert was again never shown. Now thats fixed and showing the alert in next 4th launch)
 
