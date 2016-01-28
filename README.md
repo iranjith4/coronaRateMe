@@ -1,6 +1,6 @@
 # Corona Rate Me !
 
-Current Version : 1.0.1
+Current Version : 1.0.2
 
 Asking rating to the app users made easy for games made with Corona SDK.
 
@@ -60,8 +60,20 @@ if rateMeUtilities.checkForAlert() then
   composer.showOverlay("coronaRateMe.rateMe",options)
 end
 ```
+In the composer architecture, please add the above lines inside `function scene:show( event )` and the phase `did`
 
-NOTE : Please make sure `text` should be one / two line. If you want explicitly to cut use `\n`.
+```lua
+function scene:show( event )
+    local sceneGroup = self.view
+    local phase = event.phase
+    if ( phase == "will" ) then
+    elseif ( phase == "did" ) then
+      -- Add the code here :D
+    end
+end
+```
+
+NOTE : Please make sure `text` should be one / two line. If you want to explicitly break the line use `\n`.
 
 Best place to add the above code will be after the Game complete, or high score achieve.
 
@@ -129,8 +141,7 @@ Thats it for Custom call Event.
 
 ## ChangeLogs
 * 1.0.2
-  * 2 Line support for the
-
+  * 2 Line support for the Text in the Middle.
 
 
 * 1.0.1
