@@ -87,9 +87,7 @@ function scene:create( event )
     middleBg.y = topBg.y + topBg.height / 2 + middleBg.height / 2
     sceneGroup:insert(middleBg)
 
-    local textOptions =
-    {
-    --parent = textGroup,
+    local dummyTextOptions = {
       text = params.text,
       x = middleBg.x,
       y =  middleBg.y,
@@ -99,8 +97,33 @@ function scene:create( event )
       align = "center"
     }
 
+    local dummyText = display.newText( dummyTextOptions )
+
+    local textFontSize
+    if dummyText.height > 18 then
+      textFontSize = 11
+    else
+      textFontSize = 14
+    end
+
+    dummyText:removeSelf()
+    dummyText = nil
+
+    local textOptions =
+    {
+      text = params.text,
+      x = middleBg.x,
+      y =  middleBg.y,
+      width = alertWidth,     --required for multi-line and alignment
+      font = native.systemFont,
+      fontSize = textFontSize,
+      align = "center"
+    }
     local text = display.newText( textOptions )
     text:setFillColor( 1, 1, 1 )
+    print("Height of text")
+    print(text.height)
+    text.scale = 0.1
     sceneGroup:insert(text)
 
     local bottomBg = display.newImage("coronaRateMe/bottom_bg.png")
