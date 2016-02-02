@@ -1,16 +1,12 @@
 # Corona Rate Me !
 
-Current Version : 1.0.2
+Current Version : 1.0.3
 
 Asking rating to the app users made easy for games made with Corona SDK.
 
 ![alt tag](https://github.com/iranjith4/coronaRateMe/blob/dev_r/screenshot.png)
 
 Made for Womi Studios, by Perk.com Inc.
-
-##Currently Working on
-
-* Making the App Icon Rounded Rectangle irrespective of the Original Image.
 
 ##How to Integrate
 1. Download the repo, copy the `coronaRateMe` folder and paste at the root folder of your game where the `main.lua` is there.
@@ -22,7 +18,7 @@ local appStoreId = "id1025709661"
 local androidPackageName = "com.womistudios.dashingdots.aphone"
 ```
 
-Note : Currently working on the image to have rounded square by default. Until you can use the rounded rectangle image itself.
+Note : Please use an image on minimum with 120 x 120 with corner Radius. 
 
 ##How to Use
 
@@ -140,6 +136,9 @@ Thats it for Custom call Event.
   ```
 
 ## ChangeLogs
+* 1.0.3
+  * Added landscape support.
+
 * 1.0.2
   * 2 Line support for the Text in the Middle.
 

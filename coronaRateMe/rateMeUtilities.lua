@@ -11,7 +11,7 @@
 --||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 local firstAlertAfter = 4
 local laterAlertAfter = 4
-local appIconUrl = "Icon-60.png"
+local appIconUrl = "Icon-60@2x.png"
 local appStoreId = "id1025709661"
 local androidPackageName = ""
 --||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -166,6 +166,12 @@ function M.getNewHeight(image , newWidth)
     return newHeight
 end
 
+function M.getNewWidth(image , newHeight)
+  local r = image.width / image.height
+  local newWidth = newHeight * r
+  return newWidth
+end
+
 function M.osType()
     local os = system.getInfo("platformName")
     if ( os == "iPhone OS") then
@@ -173,6 +179,16 @@ function M.osType()
     elseif ( os == "Android" ) then
         return "android"
     end
+end
+
+function M.getOrientation()
+  if system.orientation == "portrait" or system.orientation == "portraitUpsideDown" then
+    return "portrait"
+  elseif system.orientation == "landscapeLeft" or system.orientation == "landscapeRight" then
+    return "landscape"
+  else
+    return "portrait"
+  end
 end
 
 return M
