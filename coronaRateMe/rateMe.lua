@@ -16,6 +16,7 @@ local appStoreId = rateMeUtilities.appStoreId()
 local androidPackageName = rateMeUtilities.androidPackageName()
 local alertWidth = display.contentWidth * 0.80
 local buttonWidth
+local popupHeight = 0
 if rateMeUtilities.getOrientation() == "portrait" then
   buttonWidth = alertWidth * 0.80
 else
@@ -63,6 +64,9 @@ function scene:create( event )
 
     local sceneGroup = self.view
 
+    local popupGroup = display.newGroup()
+    popupGroup.width = display.contentWidth
+    popupGroup.height = 0
     local params = event.params
 
     local background = display.newRect(display.contentCenterX,display.contentCenterY,display.contentWidth,display.contentHeight + 200)
@@ -80,11 +84,13 @@ function scene:create( event )
     topBg.width = alertWidth
     topBg.x = display.contentCenterX
     if rateMeUtilities.getOrientation() == "portrait" then
-      topBg.y = display.contentHeight * 0.30
+      topBg.y =  topBg.height / 2
     else
-      topBg.y = display.contentHeight * 0.25
+      topBg.y =  topBg.height / 2
     end
-    sceneGroup:insert(topBg)
+    popupGroup:insert(topBg)
+
+    popupHeight = popupHeight + topBg.height
 
     --Adding the Stars -  Only for landscape
     if rateMeUtilities.getOrientation() == "landscape" then
@@ -93,7 +99,7 @@ function scene:create( event )
       topbgStars.height = topBg.height - 5
       topbgStars.x = display.contentCenterX
       topbgStars.y = topBg.y
-      sceneGroup:insert(topbgStars)
+      popupGroup:insert(topbgStars)
     end
 
     --Adding the App Icon
@@ -110,7 +116,7 @@ function scene:create( event )
     else
       appIcon.y = topBg.y + topBg.height / 2 - appIconD / 2 - 12
     end
-    sceneGroup:insert(appIcon)
+    popupGroup:insert(appIcon)
 
     local middleBg
     if rateMeUtilities.getOrientation() == "portrait" then
@@ -122,7 +128,9 @@ function scene:create( event )
     middleBg.width = alertWidth
     middleBg.x = display.contentCenterX
     middleBg.y = topBg.y + topBg.height / 2 + middleBg.height / 2
-    sceneGroup:insert(middleBg)
+    popupGroup:insert(middleBg)
+
+    popupHeight = popupHeight + middleBg.height
 
     local dummyTextOptions = {
       text = params.text,
@@ -161,7 +169,7 @@ function scene:create( event )
     print("Height of text")
     print(text.height)
     text.scale = 0.1
-    sceneGroup:insert(text)
+    popupGroup:insert(text)
 
     local bottomBg
     if rateMeUtilities.getOrientation() == "portrait" then
@@ -173,7 +181,9 @@ function scene:create( event )
     bottomBg.width = alertWidth
     bottomBg.x = display.contentCenterX
     bottomBg.y = middleBg.y + middleBg.height / 2 + bottomBg.height / 2
-    sceneGroup:insert(bottomBg)
+    popupGroup:insert(bottomBg)
+
+    popupHeight = popupHeight + bottomBg.height
 
     --Adding Star
     local starX = display.contentCenterX - 4 * starWidth
@@ -191,7 +201,7 @@ function scene:create( event )
       star.x = starX
       star.y = starY
       starX = starX + 2 * starWidth
-      sceneGroup:insert(star)
+      popupGroup:insert(star)
     end
 
     local rateNowButton
@@ -210,7 +220,7 @@ function scene:create( event )
       rateNowButton.y = starY + starWidth * 2.5
     end
     rateNowButton:addEventListener("touch",rateNowListener)
-    sceneGroup:insert(rateNowButton)
+    popupGroup:insert(rateNowButton)
 
     local remindMeButton = display.newImage("coronaRateMe/button_remind.png")
     remindMeButton.height = rateMeUtilities.getNewHeight(remindMeButton, buttonWidth)
@@ -224,7 +234,7 @@ function scene:create( event )
       remindMeButton.y = rateNowButton.y + rateNowButton.height + 5
     end
     remindMeButton:addEventListener("touch",remindMeLaterListener)
-    sceneGroup:insert(remindMeButton)
+    popupGroup:insert(remindMeButton)
 
     local noThanksButton = display.newImage("coronaRateMe/button_no_thanks.png")
     noThanksButton.height = rateMeUtilities.getNewHeight(noThanksButton, buttonWidth)
@@ -237,7 +247,12 @@ function scene:create( event )
       noThanksButton.y = rateNowButton.y + rateNowButton.height + 5
     end
     noThanksButton:addEventListener("touch",noThanksListener)
-    sceneGroup:insert(noThanksButton)
+    popupGroup:insert(noThanksButton)
+
+    sceneGroup:insert(popupGroup)
+    popupGroup.height = popupHeight
+    popupGroup.y = display.contentHeight / 2 - popupHeight / 2
+
 end
 
 

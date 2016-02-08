@@ -1,6 +1,6 @@
 # Corona Rate Me !
 
-Current Version : 1.0.3
+Current Version : 1.0.4
 
 Asking rating to the app users made easy for games made with Corona SDK.
 
@@ -18,7 +18,7 @@ local appStoreId = "id1025709661"
 local androidPackageName = "com.womistudios.dashingdots.aphone"
 ```
 
-Note : Please use an image on minimum with 120 x 120 with corner Radius. 
+Note : Please use an image on minimum with 120 x 120 with corner Radius.
 
 ##How to Use
 
@@ -136,6 +136,9 @@ Thats it for Custom call Event.
   ```
 
 ## ChangeLogs
+* 1.0.4
+  * Fixed the centering issue in iPads. Now the entire popup will be a separate `sceneGroup` and so, finally it is centered. Closed this [issue](https://github.com/iranjith4/coronaRateMe/issues/1).
+
 * 1.0.3
   * Added landscape support.
 
