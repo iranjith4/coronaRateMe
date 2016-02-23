@@ -102,6 +102,22 @@ function scene:create( event )
       popupGroup:insert(topbgStars)
     end
 
+    --Adding the App Name
+    if rateMeUtilities.getOrientation() == "portrait" then
+      local appNameOptions =
+      {
+        text = rateMeUtilities.getAppName(),
+        width = alertWidth,     --required for multi-line and alignment
+        font = native.systemFontBold,
+        x = display.contentCenterX,
+        fontSize = 16,
+        align = "center"
+      }
+      local appTitle = display.newText( appNameOptions )
+      appTitle.y = appTitle.height / 2 + 12
+      popupGroup:insert(appTitle)
+    end
+
     --Adding the App Icon
     local appIconD
     if rateMeUtilities.getOrientation() == "portrait" then

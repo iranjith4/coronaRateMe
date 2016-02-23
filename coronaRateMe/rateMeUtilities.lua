@@ -14,6 +14,7 @@ local laterAlertAfter = 4
 local appIconUrl = "Icon-60@2x.png"
 local appStoreId = "id1025709661"
 local androidPackageName = ""
+local appName = "Tap It with Perk Points"
 --||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 --||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 --||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -40,6 +41,9 @@ function M.androidPackageName ()
   return androidPackageName
 end
 
+function M.getAppName()
+  return appName
+end
 
 function loadTable(filename)
     local path = system.pathForFile( filename, system.DocumentsDirectory)

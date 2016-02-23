@@ -1,21 +1,24 @@
 # Corona Rate Me !
 
-Current Version : 1.0.4
+Current Version : 1.0.5
 
 Asking rating to the app users made easy for games made with Corona SDK.
 
 ![alt tag](https://github.com/iranjith4/coronaRateMe/blob/dev_r/screenshot.png)
 
+![alt tag](https://github.com/iranjith4/coronaRateMe/blob/dev_r/screenshot1.png)
+
 Made for Womi Studios, by Perk.com Inc.
 
 ##How to Integrate
 1. Download the repo, copy the `coronaRateMe` folder and paste at the root folder of your game where the `main.lua` is there.
-2. In the `coronaRateMe/rateMeUtilities.lua`, add `appIconUrl`,`appStoreId`,`androidPackageName`.
+2. In the `coronaRateMe/rateMeUtilities.lua`, add `appIconUrl`,`appStoreId`,`androidPackageName`,`appName`.
 
 ```lua
 local appIconUrl = "Icon-60.png"
 local appStoreId = "id1025709661"
 local androidPackageName = "com.womistudios.dashingdots.aphone"
+local appName = "Tap it with Perk Points"
 ```
 
 Note : Please use an image on minimum with 120 x 120 with corner Radius.
@@ -136,6 +139,9 @@ Thats it for Custom call Event.
   ```
 
 ## ChangeLogs
+* 1.0.5
+  * Added the App Name in the top of the Pop up. It works only for the portrait mode. In landscape mode, the name wont appear.
+
 * 1.0.4
   * Fixed the centering issue in iPads. Now the entire popup will be a separate `sceneGroup` and so, finally it is centered. Closed this [issue](https://github.com/iranjith4/coronaRateMe/issues/1).
 
